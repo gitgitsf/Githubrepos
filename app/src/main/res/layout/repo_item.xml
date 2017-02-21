@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvRepoItem"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:layout_margin = "3dp"
+        card_view:contentPadding="@dimen/activity_horizontal_margin"
+        card_view:cardCornerRadius="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_ripple_border"
+            android:orientation="vertical">
+
+            <!-- Repo name -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvRepoNameLabel"
+                    style="@style/BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="2dp"
+                    android:text="@string/repo_name_label" />
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/BoldText"
+                    android:text="a-complex-orm-faster-than-sql"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/holo_purple" />
+
+            </LinearLayout>
+
+            <!-- Repo updated at -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUpdatedAtLabel"
+                    style="@style/BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="2dp"
+                    android:text="@string/updated_at_label" />
+
+                <TextView
+                    android:id="@+id/tvUpdatedAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2016-01-24T17:31:27Z"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="2dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginBottom="3dp"
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="left"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/repo_owner_avatar"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <!-- table for id, login, and language -->
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="2" >
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_marginTop="7dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/tvIdLabel"
+                            style="@style/BoldText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/id_label" />
+
+                        <TextView
+                            android:id="@+id/tvId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="98761234"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="2dp"
+                            />
+                    </TableRow>
+
+                    <!-- login: labe and login data-->
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/tvLoginLabel"
+                            style="@style/BoldText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/login_label" />
+
+                        <TextView
+                            android:id="@+id/tvLogin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ocramius/will retrieve from repo.owner"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="2dp"
+                            />
+                    </TableRow>
+
+                    <!-- Language: labe and language data-->
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/tvLanguageLabel"
+                            style="@style/BoldText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/language_label" />
+
+                        <TextView
+                            android:id="@+id/tvLanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Javascript"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="2dp"
+                            />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:text="about the repo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:minLines="1"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

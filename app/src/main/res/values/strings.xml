@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Github Repos</string>
+    <string name="action_settings">Settings</string>
+    <string name="repo_owner_avatar">Repo Owner Avatar</string>
+
+    <string name="repo_name_label">Repo: </string>
+    <string name="id_label">Id: </string>
+    <string name="login_label">Login: </string>
+    <string name="language_label">Language: </string>
+    <string name="updated_at_label">Update at:</string>
+
+    <string name="text_header_title">Github User Repos</string>
+
+    <!--NOTE the word "LOGIN" will be replaced by the login value from github repo' value -->
+    <string name="text_header_description">List of LOGIN Github repos, for more detail, please visit \u00A0 </string>
+
+    <string name="no_repo_description_msg">Owner didn\'t indicate what is this repo about.</string>
+    <string name="repo_description_msg_prefix">This repo is about \u00A0 </string>
+
+
+</resources>
