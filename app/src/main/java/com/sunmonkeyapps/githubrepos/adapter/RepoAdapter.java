@@ -26,7 +26,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import butterknife.BindView;
 
 /**
  *
@@ -46,6 +45,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Repo mRepo;
     static List<Repo> listRepos;
     static Context mContext;
+
 
     public RepoAdapter(Context context, RepoHeader repoHeader, List<Repo> listRepos) {
         this.listRepos = listRepos;
@@ -68,6 +68,8 @@ public class RepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         } else if(viewType == TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.repo_item, parent, false);
+
+
             return new RepoViewHolder(view);
         }
 
@@ -95,18 +97,6 @@ public class RepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             // populate the data to view
             onBindRepoItemViewHolder(holder, position);
 
-            ((RepoViewHolder) holder).mCardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Repo repo= new Repo();
-                    repo= listRepos.get(position -1);
-                    String cloneUrl = repo.getCloneUrl();
-                    // open clone url in a broswer
-                    openBrowser(cloneUrl);
-
-                }
-            });
         }
     }
 
@@ -164,26 +154,6 @@ public class RepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
-    /**
-     *
-     * @param cloneUrl
-     *
-     * This method starts a activity to open the repo clone url in a browser.
-     * If no browser is available, toast a message to alert the user.
-     */
-    private void openBrowser(String cloneUrl) {
-        Log.d(TAG, "openBrowser: ");
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(cloneUrl));
-        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        if (browserIntent.resolveActivity(mContext.getPackageManager()) != null) {
-            mContext.startActivity(browserIntent);
-        } else {
-            Log.d(TAG, "No Intent available to handle action");
-            Toast.makeText(mContext,"Unable to Open a browse", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     /**
      *  ViewHolder named RepoHeaderViewHolder for repo header
@@ -199,11 +169,13 @@ public class RepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             // Bind ButterKnife to this view holder
             ButterKnife.bind(this, headerView);
         }
+
+
     }
     /**
      * ViewHolder named RepoViewHolder for user repos
      */
-    public static class RepoViewHolder  extends RecyclerView.ViewHolder {
+    public static class RepoViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         View mCardView;
         // Define the bindings to the ViewHolder's views
@@ -223,7 +195,33 @@ public class RepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             // Bind ButterKnife to this view holder
             ButterKnife.bind(this, view);
             mCardView = view;
+            view.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+
+
+            Repo repo= new Repo();
+            repo= listRepos.get(getAdapterPosition() -1);
+            String cloneUrl = repo.getCloneUrl();
+            // open clone url in a broswer
+            Toast.makeText(mContext, "repo vh" + "item click at " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+            openBrowser(cloneUrl);
+        }
+
+        private void openBrowser(String cloneUrl) {
+            Log.d(TAG, "openBrowser: ");
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(cloneUrl));
+            browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            if (browserIntent.resolveActivity(mContext.getPackageManager()) != null) {
+                mContext.startActivity(browserIntent);
+            } else {
+                Log.d(TAG, "No Intent available to handle action");
+                Toast.makeText(mContext,"Unable to Open a browse", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
+
 }
